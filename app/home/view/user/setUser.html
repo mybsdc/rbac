@@ -1,0 +1,68 @@
+{extend name="common/base" /}
+{block name="title"}首页{/block}
+{block name="main"}
+<div class="tpl-content-page-title">
+    Amaze UI 首页组件
+</div>
+<ol class="am-breadcrumb">
+    <li><a href="#">设置</a></li>
+    <li><a href="#">用户管理</a></li>
+    <li class="am-active">添加用户</li>
+</ol>
+<div class="tpl-block ">
+    <div class="am-g tpl-amazeui-form">
+        <div class="am-u-sm-12 am-u-md-9">
+            <form class="am-form am-form-horizontal" id="userInfoForm">
+                <div class="am-form-group">
+                    <label for="user-weibo" class="am-u-sm-3 am-form-label">用户名</label>
+                    <div class="am-u-sm-9">
+                        <input type="text" id="roleName" placeholder="输入一个用户名" value="<?php echo $info ? $info['name'] : ''; ?>" name="name" />
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="user-weibo" class="am-u-sm-3 am-form-label">密码</label>
+                    <div class="am-u-sm-9">
+                        <input type="password" id="roleName" placeholder="输入密码" value="" name="pwd" />
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="user-weibo" class="am-u-sm-3 am-form-label">确认密码</label>
+                    <div class="am-u-sm-9">
+                        <input type="password" id="roleName" placeholder="再次输入密码" value="" name="pwd2" />
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="user-weibo" class="am-u-sm-3 am-form-label">邮箱</label>
+                    <div class="am-u-sm-9">
+                        <input type="text" id="roleName" placeholder="输入一个邮箱" value="<?php echo $info ? $info['email'] : ''; ?>" name="email" />
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="user-weibo" class="am-u-sm-3 am-form-label">所属角色</label>
+                    <div class="am-u-sm-9">
+                    {php}if ($roleInfo):{/php}
+                        {volist name="roleInfo" id="vo"}
+                            <label>
+                                <input type="checkbox" name="roleIdArray[]" value="{$vo.id}" {php}if (in_array($vo['id'], $userRoleList)):{/php}checked="checked"{php}endif;{/php} />
+                                <span>{$vo.name}</span>
+                            </label>
+                        {/volist}
+                    {php}else:{/php}
+                        暂无角色数据
+                    {php}endif;{/php}
+                    </div>
+                </div>
+                <div class="am-form-group">
+                <!-- 仅当有id提交过来并且查询有值才加载这个隐藏域 -->
+                {php}if (isset($_GET['id']) && $info):{/php}
+                    <input type="hidden" name="id" value="<?php echo $info ? $info['id'] : 0; ?>" />
+                {php}endif;{/php}
+                    <div class="am-u-sm-9 am-u-sm-push-3" style="text-align: right;">
+                        <button type="button" class="am-btn am-btn-secondary am-round" id="postUserInfo">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{/block}

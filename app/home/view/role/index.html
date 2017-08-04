@@ -1,0 +1,91 @@
+{extend name="common/base" /} 
+{block name="title"}首页{/block} 
+{block name="data-type"}index{/block} 
+{block name="main"}
+<div class="tpl-content-page-title">
+    Amaze UI 首页组件
+</div>
+<ol class="am-breadcrumb">
+    <li><a href="#">设置</a></li>
+    <li class="am-active">角色管理</li>
+</ol>
+<div class="tpl-portlet-components">
+    <div class="portlet-title">
+        <div class="caption font-green bold">
+            <span class="fa-code"></span> 角色列表
+        </div>
+        <div class="tpl-portlet-input tpl-fz-ml">
+            <div class="portlet-input input-small input-inline">
+                <div class="input-icon right">
+                    <i class="fa-search"></i>
+                    <input type="text" class="form-control form-control-solid" placeholder="搜索..."> </div>
+            </div>
+        </div>
+    </div>
+    <div class="tpl-block">
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs" style="float: right;">
+                        <button type="button" class="am-btn am-btn-default am-btn-success" id="addRole"><span class="fa-plus"></span> 新增</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <form class="am-form">
+                <table class="am-table am-table-striped am-table-hover table-main">
+                    <thead>
+                        <tr>
+                            <th class="table-title">角色名</th>
+                            <th>创建时间</th>
+                            <th>修改时间</th>
+                            <th class="table-set" style="text-align: right;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {php}if ($data):{/php} {volist name="data" id="vo"}
+                        <tr>
+                            <td>{$vo->name}</td>
+                            <td>{$vo->create_time}</td>
+                            <td>{$vo->update_time}</td>
+                            <td>
+                                <div class="am-btn-toolbar" style="float: right;">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <a href="/home/role/setRole?id={$vo->id}" class="am-btn am-btn-default am-btn-xs am-text-secondary editRole"><span class="fa-pencil-square-o"></span> 编辑</a>
+                                        <a href="#" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only deleteRole"><span class="fa-trash-o"></span> 删除</a>
+                                        <a href="/home/role/setRoleAccess?role_id={$vo->id}" class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="fa-file-text-o"></span> 设置权限</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {/volist} {php}else:{/php}
+                        <tr>
+                            <td colspan="5">暂无数据</td>
+                        </tr>
+                        {php}endif;{/php}
+                    </tbody>
+                </table>
+                <div class="am-cf">
+                    <div class="am-fr">
+                        <ul class="am-pagination tpl-pagination">
+                            <li class="am-disabled"><a href="#">«</a></li>
+                            <li class="am-active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="tpl-alert"></div>
+</div>
+{/block}

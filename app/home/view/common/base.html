@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- 标题 -->
+    <title>{block name="title"}{/block}</title>
+    <!-- end 标题 -->
+    <meta name="description" content="{block name="description"}{/block}" />
+    <meta name="keywords" content="{block name="keywords"}{/block}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="__HOME__/i/favicon.png" />
+    <link rel="apple-touch-icon-precomposed" href="__HOME__/i/app-icon72x72@2x.png" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <!-- 公共样式js -->
+    <link rel="stylesheet" href="__HOME__/css/amazeui.min.css" />
+    <link rel="stylesheet" href="__HOME__/css/admin.css" />
+    <link rel="stylesheet" href="__HOME__/css/app.css" />
+    <link rel="stylesheet" href="__HOME__/css/public.css" />
+    <!-- end 公共样式js -->
+    <!-- 当前页单独样式 -->
+    {block name="style"}{/block}
+    <!-- end 当前页单独样式 -->
+</head>
+
+<body>
+    <!-- topbar -->
+    {block name="header"} {include file="common/header" /} {/block}
+    <!-- end topbar -->
+    <div class="tpl-page-container tpl-page-header-fixed">
+        <!-- sidebar -->
+        {block name="sidebar"} {include file="common/sidebar" /} {/block}
+        <!-- end sidebar -->
+        <div class="tpl-content-wrapper">
+            <!-- 主体内容 -->
+            {block name="main"}{/block}
+            <!-- end 主体内容 -->
+        </div>
+    </div>
+    <!-- 弹窗 -->
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="isModal">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">
+                <span id="tip-h"></span>
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd"></div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn">确定</span>
+            </div>
+        </div>
+    </div>
+    <!-- end 弹窗 -->
+    <!-- 公共js -->
+    <script type="text/javascript">
+        var controller = '{:request()->controller()}'.toLowerCase(); // 当前控制器名
+        var action = '{:request()->action()}'; // 当前方法名
+    </script>
+    <script src="__HOME__/js/jquery-3.2.1.min.js"></script>
+    <script src="__HOME__/js/amazeui.min.js"></script>
+    <script src="__HOME__/js/public.js"></script>
+    <script src="__HOME__/js/app.js"></script>
+    <!-- end 公共js -->
+    <!-- 当前页单独js -->
+    {block name="js"}{/block}
+    <!-- end 当前页单独js -->
+</body>
+
+</html>

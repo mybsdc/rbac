@@ -1,0 +1,44 @@
+{extend name="common/base" /}
+{block name="title"}首页{/block}
+{block name="main"}
+<div class="tpl-content-page-title">
+    Amaze UI 首页组件
+</div>
+<ol class="am-breadcrumb">
+    <li><a href="#">设置</a></li>
+    <li><a href="#">角色管理</a></li>
+    <li class="am-active">设置权限</li>
+</ol>
+<div class="tpl-block ">
+    <div class="am-g tpl-amazeui-form">
+        <div class="am-u-sm-12 am-u-md-9">
+            <form class="am-form am-form-horizontal" id="setRoleAccessForm">
+                <div class="am-form-group">
+                    <h2>为<span style="color: #ed6b75;">{$info['name']}</span>设置权限</h2>
+                </div>
+                <div class="am-form-group">
+                    <label for="user-weibo" class="am-u-sm-3 am-form-label">所有权限列表</label>
+                    <div class="am-u-sm-9">
+                    {php}if ($accessList):{/php}
+                        {volist name="accessList" id="vo"}
+                            <label>
+                                <input type="checkbox" name="accessIdArray[]" value="{$vo.id}" {php}if (in_array($vo['id'], $haveAccess)):{/php}checked="checked"{php}endif;{/php} />
+                                <span>{$vo.title}</span>
+                            </label>
+                        {/volist}
+                    {php}else:{/php}
+                        暂无权限数据
+                    {php}endif;{/php}
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <input type="hidden" name="id" value="<?php echo $info ? $info['id'] : ''; ?>" />
+                    <div class="am-u-sm-9 am-u-sm-push-3" style="text-align: right;">
+                        <button type="button" class="am-btn am-btn-secondary am-round" id="postRoleAccess">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{/block}
