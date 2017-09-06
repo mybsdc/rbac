@@ -1,4 +1,7 @@
 .idea
 composer.lock
 *.log
-thinkphp
+# thinkphp
+
+# 临时文件无需上传
+runtime
